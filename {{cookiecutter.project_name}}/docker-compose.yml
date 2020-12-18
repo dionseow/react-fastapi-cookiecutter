@@ -1,0 +1,27 @@
+version: "3"
+services:
+  backend:
+    restart: always
+    container_name: {{cookiecutter.project_name}}_backend_dev
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app
+    expose:
+      - 80
+    entrypoint: /start-reload.sh
+
+  frontend:
+    container_name: {{cookiecutter.project_name}}_frontend_dev
+    stdin_open: true
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - {{cookiecutter.dev_port}}:3000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend

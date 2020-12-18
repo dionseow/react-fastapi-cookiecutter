@@ -1,0 +1,19 @@
+version: "3":
+services:
+  frontend:
+    container_name: {{cookiecutter.project_name}}_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile-prod
+    ports:
+      - {{cookiecutter.prod_port}}:80
+
+  backend:
+    restart: always
+    container_name: {{cookiecutter.project_name}}_backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    expose:
+      - 80
+

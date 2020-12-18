@@ -1,0 +1,5 @@
+{
+    "project_name": "HelloWorld",
+    "prod_port": 8888,
+    "dev_port": 8889
+}
